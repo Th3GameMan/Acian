@@ -55,7 +55,11 @@ for (i = 1; i < contenti.length; i++) {
 for (i = 0; i < contentiii.length; i++) {
     if (contentiii[i] <= -1) {
         contentiii[i] = contentiii[i] % 27
-        contentiv.push(alphabet[(contentiii[i] + 27)])
+        if (contentiii[i] != 0) {
+            contentiv.push(alphabet[(contentiii[i] + 27)])  
+        } else {
+            contentiv.push(alphabet[contentiii[i]])
+        }
     } else if (contentiii[i] > -27 && contentiii[i] < 0) {
         contentiv.push(alphabet[(contentiii[i] + 27)])
     } else {
