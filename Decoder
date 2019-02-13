@@ -1,0 +1,67 @@
+
+
+// Type the key and the content of the message between the "" below
+var key = "JON"
+var content = "VKRJT"
+
+
+// Defines all needed Variables
+var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "/"]
+var worKey = key.split("")
+var s = 0
+var keyi = []
+var keyii = []
+var workPut = content.split("")
+var contenti = []
+var contentii = []
+var contentiii = []
+var contentiv = []
+
+// Converts key from letters to numbers
+for (i = 0; i < worKey.length; i++) {
+    keyi.push(alphabet.indexOf(worKey[i]))
+}
+
+// Calculates the sum
+for (i = 0; i < keyi.length; i++) {
+    s += keyi[i]
+}
+
+// Converts content from letters to numbers
+for (i = 0; i < workPut.length; i++) {
+    contenti.push(alphabet.indexOf(workPut[i]))
+}
+
+// Creates the continuous ket to be run against later
+for (i = 0, j = 0; i < contenti.length; ++i, ++j) {
+    if (j == keyi.length)
+        j = 0
+    keyii[i] = keyi[j]
+}
+
+// Required function to get around calling [-1] which does not exist
+function shift() {
+    contentii = (contenti[0] - s - keyii[0])
+    contentiii.unshift(contentii)
+}
+shift()
+
+// Creates the new list of decrypted numbers
+for (i = 1; i < contenti.length; i++) {
+    contentiii.push(contenti[i] - s - contenti[i-1] - keyii[i])
+}
+
+// Converts all decrypted numbers to letters, aswell as making all numbers possible to be turned into letters
+for (i = 0; i < contentiii.length; i++) {
+    if (contentiii[i] <= -1) {
+        contentiii[i] = contentiii[i] % 27
+        contentiv.push(alphabet[(contentiii[i] + 27)])
+    } else if (contentiii[i] > -27 && contentiii[i] < 0) {
+        contentiv.push(alphabet[(contentiii[i] + 27)])
+    } else {
+        contentiv.push(alphabet[(contentiii[i])])
+    }
+}
+
+// Outputs the decrypted code to the console
+console.log(contentiv.join(""))
