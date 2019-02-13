@@ -1,8 +1,8 @@
 
 
 // Type the key and the content of the message between the "" below
-var key = "JON"
-var content = "VKRJT"
+var key = "EXAMPLE"
+var content = "EXAMPLE"
 
 
 // Defines all needed Variables
